@@ -3,7 +3,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_VERSION:=2023.01
 PKG_HASH:=69423bad380f89a0916636e89e6dcbd2e4512d584308d922d1039d1e4331950f
-PKG_BUILD_DEPENDS:=!TARGET_mediatek_mt7623:arm-trusted-firmware-tools/host
+PKG_BUILD_DEPENDS:=!(TARGET_ramips||TARGET_mediatek_mt7623):arm-trusted-firmware-tools/host
 
 include $(INCLUDE_DIR)/u-boot.mk
 include $(INCLUDE_DIR)/package.mk
@@ -291,7 +291,7 @@ endef
 
 define Build/Compile
 	$(call Build/Compile/U-Boot)
-ifeq ($(UBOOT_IMAGE),u-boot.fip))
+ifeq ($(UBOOT_IMAGE),u-boot.fip)
 	$(call Build/fip-image)
 endif
 endef
